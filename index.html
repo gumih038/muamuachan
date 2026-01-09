@@ -3,623 +3,456 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>nail salon MUA | 北千住・町屋・亀有のプライベートサロン</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Shippori+Mincho:wght@300;400;500&family=Zen+Kaku+Gothic+New:wght@300;400&display=swap" rel="stylesheet">
-    
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Tailwind CSS -->
+    <title>nail salon MUA | 綺麗可愛いを叶えるプライベートサロン</title>
+    <meta name="description" content="北千住・町屋・亀有エリアのプライベートネイルサロンnail salon MUA。朝9時オープン、自店オフ無料。洗練された空間で、あなただけの綺麗可愛いを実現します。">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'mua-bg': '#F5F5F5', /* オフホワイト */
-                        'mua-text': '#333333', /* 濃いグレー */
-                        'mua-text-light': '#777777', /* グレー */
-                        'mua-accent': '#9F8C74', /* グレージュのような落ち着いたゴールド */
-                        'mua-accent-light': '#D4C4B0',
-                    },
-                    fontFamily: {
-                        serif: ['"Shippori Mincho"', '"Cormorant Garamond"', 'serif'],
-                        sans: ['"Zen Kaku Gothic New"', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Noto+Serif+JP:wght@200;400;500&family=Montserrat:wght@100;300;400&display=swap" rel="stylesheet">
     <style>
-        /* カスタムスタイル */
+        :root {
+            --primary-white: #ffffff;
+            --nuance-grey: #f0f0f0;
+            --accent-grey: #d1d1d1;
+            --luxury-taupe: #8e8e8e;
+            --deep-grey: #333333;
+        }
+
         body {
-            background-color: #F5F5F5;
-            color: #333333;
-            font-family: 'Shippori Mincho', serif;
+            font-family: 'Montserrat', 'Noto Serif JP', serif;
+            background-color: var(--primary-white);
+            color: var(--deep-grey);
             overflow-x: hidden;
-            letter-spacing: 0.05em;
+            line-height: 1.7;
         }
 
-        h1, h2, h3, .serif-font {
-            font-family: 'Shippori Mincho', serif;
-        }
-
-        /* スクロールバーのカスタマイズ */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #F5F5F5;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #C0C0C0;
-            border-radius: 3px;
-        }
-
-        /* 白ガラスモーフィズムカード */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .glass-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-        }
-
-        /* ヒーローセクションのアニメーション */
-        .hero-bg {
-            position: absolute;
+        /* ヒーロー：カーテンアニメーション */
+        .hero-curtain {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            z-index: -1;
-            transition: transform 10s ease;
-        }
-        
-        .hero-container:hover .hero-bg {
-            transform: scale(1.03);
+            height: 100vh;
+            background: #bdbdbd; /* 灰色のカーテンイメージ */
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 1.8s cubic-bezier(0.85, 0, 0.15, 1);
         }
 
-        /* ロゴの輝きアニメーション */
-        .logo-glow {
-            animation: glow 3s infinite alternate;
-            filter: drop-shadow(0 0 8px rgba(255,255,255,0.6));
+        .hero-curtain.open {
+            transform: translateY(-100%);
         }
 
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.4)); opacity: 0.9; }
-            to { filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9)); opacity: 1; }
-        }
-        
-        /* 注意事項のスクロールボックス */
-        .terms-box {
-            max-height: 350px;
-            overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: #C0C0C0 #F5F5F5;
+        .curtain-logo {
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
         }
 
-        /* 画像付きメニューカード */
-        .menu-card-img {
-            min-height: 120px;
-            background-size: cover;
-            background-position: center;
+        /* スクロールアニメーション */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
         }
 
-        /* ナビゲーションロゴの反転アニメーション用クラス */
-        .nav-logo-invert {
-            filter: invert(1) grayscale(100%);
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 写真のホバー演出 */
+        .img-hover {
+            overflow: hidden;
+        }
+        .img-hover img {
+            transition: transform 1.5s ease;
+        }
+        .img-hover:hover img {
+            transform: scale(1.08);
+        }
+
+        /* 高級感のあるセクションタイトル */
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        .sub-title {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            color: var(--luxury-taupe);
+        }
+
+        /* ナビゲーション */
+        .nav-item {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            position: relative;
+        }
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+        .nav-item:hover::after {
+            width: 100%;
+        }
+
+        /* ぼかし背景付きロゴボックス */
+        .logo-glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+        }
+
+        /* アンカーリンクのオフセット */
+        section {
+            scroll-margin-top: 80px;
         }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <!-- Loading Screen -->
-    <div id="loader" class="fixed inset-0 z-50 flex items-center justify-center bg-mua-bg transition-opacity duration-1000">
+    <!-- Curtain Opening -->
+    <div id="curtain" class="hero-curtain">
         <div class="text-center">
-            <!-- ローディングロゴ -->
-            <img src="ロゴ白.jpg" alt="MUA" class="h-16 w-auto mx-auto logo-glow invert brightness-0">
-            <p class="text-xs text-mua-text-light mt-4 tracking-widest">LOADING...</p>
+            <img src="ロゴ白.jpg" alt="nail salon MUA" class="w-40 md:w-56 mx-auto mb-6 opacity-0 transition-opacity duration-1000 curtain-logo" id="initialLogo">
+            <div class="h-px w-12 bg-white/40 mx-auto mb-4 scale-x-0 transition-transform duration-1000 delay-500" id="line"></div>
+            <p class="text-white text-[10px] tracking-[0.5em] uppercase opacity-0 transition-opacity duration-1000 delay-700" id="subText">Exclusive Private Salon</p>
         </div>
     </div>
 
-    <!-- Navigation (Floating) -->
-    <nav class="fixed top-0 w-full z-40 px-6 py-4 transition-all duration-300" id="navbar">
-        <div class="flex justify-between items-center max-w-lg mx-auto md:max-w-4xl">
-            <!-- ロゴ画像 -->
-            <a href="#" class="relative z-50 transition-all duration-300">
-                <img id="nav-logo" src="ロゴ白.jpg" alt="nail salon MUA" class="h-8 w-auto object-contain">
-            </a>
-            
-            <button id="menu-btn" class="text-white focus:outline-none z-50 transition-colors duration-300" aria-label="Menu">
-                <i class="fa-solid fa-bars text-xl"></i>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="relative h-[90vh] w-full flex items-center justify-center overflow-hidden hero-container">
-        <!-- Background Image (ヒーロー画像) -->
-        <div class="hero-bg" style="background-image: url('ヒーロー画像.jpg');"></div>
-        
-        <!-- Overlay Gradient (文字が見やすいように調整) -->
-        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-mua-bg z-0"></div>
-
-        <div class="relative z-10 text-center px-4" data-aos="fade-up" data-aos-duration="1500">
-            <p class="text-xs md:text-sm text-white/90 tracking-[0.3em] mb-8 font-light shadow-sm">TOKYO / ADACHI / KITA-SENJU</p>
-            <!-- Logo Image -->
-            <div class="mb-10">
-                <img src="ロゴ白.jpg" alt="MUA" class="h-24 md:h-40 w-auto mx-auto logo-glow">
-            </div>
-            <p class="text-sm md:text-base text-white font-serif tracking-widest leading-loose drop-shadow-md">
-                日々の喧騒を忘れさせる、<br>
-                香りと光に包まれた<br>
-                大人のためのプライベート空間。
-            </p>
-            
-            <div class="mt-16 animate-bounce">
-                <p class="text-[10px] tracking-widest text-white/80">SCROLL</p>
-                <i class="fa-solid fa-chevron-down text-white/80 mt-2 font-thin"></i>
-            </div>
+    <!-- Sticky Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 px-8 py-8 flex justify-between items-center mix-blend-difference text-white">
+        <div class="text-sm font-light tracking-[0.3em]">MUA.</div>
+        <nav class="hidden md:flex space-x-12">
+            <a href="#top" class="nav-item">TOP</a>
+            <a href="#concept" class="nav-item">CONCEPT</a>
+            <a href="#gallery" class="nav-item">GALLERY</a>
+            <a href="#menu" class="nav-item">MENU</a>
+            <a href="#contact" class="nav-item">RESERVE</a>
+        </nav>
+        <div class="md:hidden">
+            <div class="w-5 h-px bg-white mb-1.5"></div>
+            <div class="w-5 h-px bg-white"></div>
         </div>
     </header>
 
-    <!-- Container for Content -->
-    <main class="max-w-md mx-auto md:max-w-2xl px-6 pb-32 relative z-10 bg-mua-bg">
-        
-        <!-- Concept Section -->
-        <section class="py-20 text-center" data-aos="fade-up">
-            <div class="w-px h-16 bg-gradient-to-b from-transparent via-mua-accent to-transparent mx-auto mb-8 opacity-50"></div>
-            <h2 class="text-xl font-serif text-mua-accent mb-8 tracking-widest">CONCEPT</h2>
-            
-            <!-- サロン内装画像 -->
-            <div class="mb-8 rounded-sm overflow-hidden shadow-lg mx-auto w-full aspect-video relative">
-                <img src="ネイル部屋.jpg" alt="Salon Interior" class="object-cover w-full h-full">
-                <div class="absolute inset-0 bg-black/10"></div>
+    <!-- Main Hero -->
+    <section id="top" class="relative h-screen flex items-center justify-center">
+        <div class="absolute inset-0 z-0">
+            <img src="ネイル部屋.jpg" alt="Interior" class="w-full h-full object-cover brightness-[0.7] grayscale-[0.2]" id="heroImg">
+        </div>
+        <div class="relative z-10 text-center">
+            <div class="logo-glass inline-block mb-10 reveal">
+                <img src="ロゴ白.jpg" alt="nail salon MUA" class="w-56 md:w-80">
             </div>
+            <div class="reveal" style="transition-delay: 0.3s;">
+                <h1 class="text-white text-xs md:text-sm tracking-[0.8em] uppercase font-light mb-2">Beautifully Curated Nails</h1>
+                <p class="text-white/60 text-[10px] tracking-[0.4em]">Kitasenju / Machiya / Kameari</p>
+            </div>
+        </div>
+    </section>
 
-            <p class="text-sm leading-9 text-mua-text text-justify font-light">
-                完全プライベートサロン nail salon MUA。<br>
-                スピード施術ではなく、お一人おひとりに向き合い、丁寧に施術させていただきます。<br>
-                可愛いからかっこいいまで、お客様の「好き」に寄り添うデザインをご提案。<br>
-                NetflixやAmazon Primeも完備。リラックスした時間をお過ごしください。<br><br>
-                <span class="text-xs text-mua-text-light block text-center mt-4 border-t border-mua-accent/20 pt-4 w-2/3 mx-auto">朝9時Open / 自店オフ無料 / 駐車場・駐輪場完備</span>
-            </p>
-        </section>
-
-        <!-- Gallery / Design -->
-        <section class="py-16" data-aos="fade-up">
-            <h2 class="text-lg font-serif text-mua-text mb-10 flex items-center">
-                <span class="w-6 h-px bg-mua-accent mr-4"></span>
-                DESIGN
-            </h2>
-            
-            <!-- Grid Layout with User Images (Works) -->
-            <div class="grid grid-cols-2 gap-4">
-                <div class="relative aspect-[4/5] rounded-sm overflow-hidden group shadow-md">
-                    <img src="works1.jpg" alt="Nail Design 1" class="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-105">
+    <!-- Concept -->
+    <section id="concept" class="py-32 px-10 bg-white">
+        <div class="max-w-3xl mx-auto text-center reveal">
+            <span class="sub-title block mb-4">— Concept</span>
+            <h2 class="section-title mb-16 italic">Elegance in Every Detail</h2>
+            <div class="space-y-8 text-sm md:text-base leading-relaxed text-zinc-500 font-light">
+                <p>
+                    朝9時、一日の始まりに。
+                    都会の喧騒を離れたプライベートな空間で、
+                    あなただけの「綺麗可愛い」を形にします。
+                </p>
+                <p>
+                    丁寧なカウンセリングと確かな技術、
+                    そして心を尽くしたおもてなし。
+                    指先を見るたびに、日常が少しだけ特別になる。
+                    そんな魔法のような時間をお楽しみください。
+                </p>
+            </div>
+            <div class="mt-20 grid grid-cols-2 gap-6">
+                <div class="img-hover h-80">
+                    <img src="美爪.jpg" alt="Beautiful Nails" class="w-full h-full object-cover grayscale-[0.2]">
                 </div>
-                <div class="relative aspect-[4/5] rounded-sm overflow-hidden group shadow-md">
-                    <img src="works2.jpg" alt="Nail Design 2" class="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-105">
-                </div>
-                <div class="relative aspect-[4/5] rounded-sm overflow-hidden group shadow-md">
-                    <img src="works3.jpg" alt="Nail Design 3" class="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-105">
-                </div>
-                <div class="relative aspect-[4/5] rounded-sm overflow-hidden group shadow-md">
-                    <img src="works4.jpg" alt="Nail Design 4" class="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-105">
+                <div class="img-hover h-80 mt-12">
+                    <img src="ネイルカラーの参考板.jpg" alt="Color Palette" class="w-full h-full object-cover brightness-95">
                 </div>
             </div>
-            
-            <!-- カラーチャート画像など -->
-            <div class="mt-4 rounded-sm overflow-hidden shadow-md aspect-[3/1]">
-                 <img src="ネイルカラーの参考板.jpg" alt="Color Chart" class="object-cover w-full h-full opacity-90 hover:opacity-100 transition-opacity">
+        </div>
+    </section>
+
+    <!-- Gallery Section: Works -->
+    <section id="gallery" class="py-32 bg-zinc-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-24 reveal">
+                <span class="sub-title block mb-4">— Gallery</span>
+                <h2 class="section-title">Latest Works</h2>
             </div>
 
-            <div class="mt-6 text-right">
-                <a href="https://www.instagram.com/m.white___nail" target="_blank" class="text-xs text-mua-accent border-b border-mua-accent pb-1 inline-block hover:opacity-70 tracking-wider">
-                    Instagramでデザインを見る <i class="fa-brands fa-instagram ml-1"></i>
-                </a>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                <div class="reveal img-hover" style="transition-delay: 0.1s;">
+                    <img src="おまかせ.jpg" alt="Custom Design" class="w-full aspect-[3/4] object-cover">
+                    <p class="text-[9px] mt-3 tracking-widest text-zinc-400 uppercase">Omakase Art</p>
+                </div>
+                <div class="reveal img-hover" style="transition-delay: 0.2s;">
+                    <img src="持ち込み.jpg" alt="Reference Design" class="w-full aspect-[3/4] object-cover mt-8">
+                    <p class="text-[9px] mt-3 tracking-widest text-zinc-400 uppercase">Request Design</p>
+                </div>
+                <div class="reveal img-hover" style="transition-delay: 0.3s;">
+                    <img src="おまかせパーツ多め.jpg" alt="Part Design" class="w-full aspect-[3/4] object-cover">
+                    <p class="text-[9px] mt-3 tracking-widest text-zinc-400 uppercase">Jewel Style</p>
+                </div>
+                <div class="reveal img-hover" style="transition-delay: 0.4s;">
+                    <img src="美爪.jpg" alt="Nail Care" class="w-full aspect-[3/4] object-cover mt-8">
+                    <p class="text-[9px] mt-3 tracking-widest text-zinc-400 uppercase">Care & Beauty</p>
+                </div>
             </div>
-        </section>
 
-        <!-- Menu -->
-        <section class="py-16" data-aos="fade-up">
-            <h2 class="text-lg font-serif text-mua-text mb-10 flex items-center justify-end">
-                MENU
-                <span class="w-6 h-px bg-mua-accent ml-4"></span>
-            </h2>
+            <div class="mt-24 text-center reveal">
+                <p class="text-xs text-zinc-400 tracking-widest italic mb-6">View more designs on Instagram</p>
+                <a href="https://www.instagram.com/m.white___nail" target="_blank" rel="noopener" class="text-xs border-b border-zinc-300 pb-1 hover:text-zinc-500 transition-colors">@m.white___nail</a>
+            </div>
+        </div>
+    </section>
 
-            <!-- Gel Menu -->
-            <h3 class="text-base font-serif text-mua-text-light mb-6 text-center tracking-widest">— GEL NAIL —</h3>
-            <div class="space-y-6 mb-12">
-                
-                <!-- Menu Item: ワンカラー -->
-                <div class="glass-card rounded-md overflow-hidden flex flex-col md:flex-row">
-                    <div class="md:w-1/3 w-full h-40 md:h-auto bg-cover bg-center" style="background-image: url('ワンカラー.jpg');"></div>
-                    <div class="p-5 md:w-2/3 flex flex-col justify-center">
-                        <div class="flex justify-between items-baseline mb-2">
-                            <h4 class="text-base font-serif text-mua-text">ワンカラー</h4>
-                            <span class="text-lg font-serif text-mua-accent">¥6,000</span>
-                        </div>
-                        <p class="text-xs text-mua-text-light mb-2"><i class="fa-regular fa-clock mr-1"></i>90分</p>
-                        <p class="text-xs text-mua-text-light leading-relaxed font-light">
-                            オフィスネイルや、シンプルなデザインがお好きな方におすすめ。<br>
-                            <span class="opacity-80 text-[10px]">※カラー追加+¥500 / ミラー・オーロラ+¥1,000</span>
-                        </p>
+    <!-- Menu Section -->
+    <section id="menu" class="py-32 bg-white px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-24 reveal">
+                <span class="sub-title block mb-4">— Services</span>
+                <h2 class="section-title">Menu</h2>
+            </div>
+
+            <div class="space-y-24">
+                <!-- One Color -->
+                <div class="flex flex-col md:flex-row items-center gap-12 reveal">
+                    <div class="w-full md:w-1/2 img-hover">
+                        <img src="ワンカラー.jpg" alt="One Color" class="w-full h-72 object-cover">
                     </div>
-                </div>
-                
-                <!-- Menu Item: ラメグラ & カラグラ -->
-                <div class="glass-card rounded-md overflow-hidden flex flex-col md:flex-row">
-                    <div class="md:w-1/3 w-full h-40 md:h-auto bg-cover bg-center" style="background-image: url('ラメグラ＆カラーグラデーション.jpg');"></div>
-                    <div class="p-5 md:w-2/3 flex flex-col justify-center">
-                        <div class="flex justify-between items-baseline mb-2">
-                            <h4 class="text-base font-serif text-mua-text">ラメグラ & カラーグラデーション</h4>
-                            <span class="text-lg font-serif text-mua-accent">¥6,300</span>
+                    <div class="w-full md:w-1/2">
+                        <div class="flex justify-between border-b border-zinc-100 pb-4 mb-4 items-baseline">
+                            <h3 class="text-lg font-light tracking-widest">One Color</h3>
+                            <span class="text-sm">¥6,000</span>
                         </div>
-                        <p class="text-xs text-mua-text-light mb-2"><i class="fa-regular fa-clock mr-1"></i>90分</p>
-                        <p class="text-xs text-mua-text-light leading-relaxed font-light">
-                            ラメや通常カラーでのグラデーション。<br>
-                            <span class="opacity-80 text-[10px]">※ベースカラー追加+¥1,000 / ラメライン+¥1,000</span>
+                        <p class="text-[10px] text-zinc-400 mb-4 tracking-tighter">所要時間 90min</p>
+                        <p class="text-xs leading-loose text-zinc-500">
+                            オフィスネイルやシンプルなデザインがお好きな方に。<br>
+                            カラー追加一色 +¥500 / ミラー・オーロラ +¥1,000
                         </p>
                     </div>
                 </div>
 
-                <!-- Menu Item: マグネット & フラッシュ -->
-                <div class="glass-card rounded-md overflow-hidden flex flex-col md:flex-row relative">
-                     <div class="absolute top-0 right-0 w-16 h-16 bg-mua-accent/10 rounded-bl-full z-0"></div>
-                    <div class="md:w-1/3 w-full h-40 md:h-auto bg-cover bg-center" style="background-image: url('マグネット＆フラッシュジェル.jpg');"></div>
-                    <div class="p-5 md:w-2/3 flex flex-col justify-center z-10">
-                        <div class="flex justify-between items-baseline mb-2">
-                            <h4 class="text-base font-serif text-mua-text">マグネット & フラッシュ <span class="text-[10px] text-mua-accent border border-mua-accent px-1 rounded ml-1">人気</span></h4>
-                            <span class="text-lg font-serif text-mua-accent">¥6,500</span>
-                        </div>
-                        <p class="text-xs text-mua-text-light mb-2"><i class="fa-regular fa-clock mr-1"></i>120分</p>
-                        <p class="text-xs text-mua-text-light leading-relaxed font-light">
-                            マグネットジェルorフラッシュジェルを選んでいただけるメニュー。<br>
-                            <span class="opacity-80 text-[10px]">※カラー追加+¥500</span>
-                        </p>
+                <!-- Gradation -->
+                <div class="flex flex-col md:flex-row-reverse items-center gap-12 reveal">
+                    <div class="w-full md:w-1/2 img-hover">
+                        <img src="ラメグラ＆カラーグラデーション.jpg" alt="Gradation" class="w-full h-72 object-cover">
                     </div>
-                </div>
-                
-                <!-- Menu Item: 美爪フレンチ -->
-                <div class="glass-card rounded-md overflow-hidden flex flex-col md:flex-row">
-                    <div class="md:w-1/3 w-full h-40 md:h-auto bg-cover bg-center" style="background-image: url('美爪.jpg');"></div>
-                    <div class="p-5 md:w-2/3 flex flex-col justify-center">
-                        <div class="flex justify-between items-baseline mb-2">
-                            <h4 class="text-base font-serif text-mua-text">美爪💎フレンチネイル</h4>
-                            <span class="text-lg font-serif text-mua-accent">¥6,800</span>
+                    <div class="w-full md:w-1/2 text-right">
+                        <div class="flex justify-between flex-row-reverse border-b border-zinc-100 pb-4 mb-4 items-baseline">
+                            <h3 class="text-lg font-light tracking-widest">Gradation</h3>
+                            <span class="text-sm">¥6,300</span>
                         </div>
-                        <p class="text-xs text-mua-text-light mb-2"><i class="fa-regular fa-clock mr-1"></i>120分</p>
-                        <p class="text-xs text-mua-text-light leading-relaxed font-light">
-                            ベースカラー込みの指先が綺麗に見えるフレンチデザイン。<br>
-                            <span class="opacity-80 text-[10px]">※カラー追加+¥500 / ガラスフレンチ等+¥1,000</span>
+                        <p class="text-[10px] text-zinc-400 mb-4 tracking-tighter">所要時間 90min</p>
+                        <p class="text-xs leading-loose text-zinc-500">
+                            ラメや通常カラーでのグラデーション。ふんわりとした色付きが指先を美しく魅せます。<br>
+                            ベース追加 +¥1,000 / ラメライン +¥1,000
                         </p>
                     </div>
                 </div>
 
-                 <!-- Menu Item: おまかせシンプル -->
-                 <div class="glass-card rounded-md overflow-hidden flex flex-col md:flex-row">
-                    <div class="md:w-1/3 w-full h-40 md:h-auto bg-cover bg-center" style="background-image: url('おまかせ.jpg');"></div>
-                    <div class="p-5 md:w-2/3 flex flex-col justify-center">
-                        <div class="flex justify-between items-baseline mb-2">
-                            <h4 class="text-base font-serif text-mua-text">おまかせデザイン(シンプル)</h4>
-                            <span class="text-lg font-serif text-mua-accent">¥7,300</span>
-                        </div>
-                        <p class="text-xs text-mua-text-light mb-2"><i class="fa-regular fa-clock mr-1"></i>120分</p>
-                        <p class="text-xs text-mua-text-light leading-relaxed font-light">
-                            ご希望カラーや好みをヒアリングし、シンプルめなデザインをご提案。<br>
-                            <span class="opacity-80 text-[10px]">※過去デザインの組み合わせや色変更不可</span>
-                        </p>
+                <!-- Magnet -->
+                <div class="flex flex-col md:flex-row items-center gap-12 reveal">
+                    <div class="w-full md:w-1/2 img-hover">
+                        <img src="マグネット＆フラッシュジェル.jpg" alt="Magnet" class="w-full h-72 object-cover">
                     </div>
-                </div>
-                
-                 <!-- Menu Item: おまかせパーツ多め -->
-                 <div class="glass-card rounded-md overflow-hidden flex flex-col md:flex-row">
-                    <div class="md:w-1/3 w-full h-40 md:h-auto bg-cover bg-center" style="background-image: url('おまかせパーツ多め.jpg');"></div>
-                    <div class="p-5 md:w-2/3 flex flex-col justify-center">
-                        <div class="flex justify-between items-baseline mb-2">
-                            <h4 class="text-base font-serif text-mua-text">おまかせデザイン(パーツ多め)</h4>
-                            <span class="text-lg font-serif text-mua-accent">¥8,000</span>
+                    <div class="w-full md:w-1/2">
+                        <div class="flex justify-between border-b border-zinc-100 pb-4 mb-4 items-baseline">
+                            <h3 class="text-lg font-light tracking-widest">Magnet & Flash</h3>
+                            <span class="text-sm">¥6,500</span>
                         </div>
-                        <p class="text-xs text-mua-text-light mb-2"><i class="fa-regular fa-clock mr-1"></i>150分</p>
-                        <p class="text-xs text-mua-text-light leading-relaxed font-light">
-                            パーツやアート多めのおまかせデザイン。<br>
-                            <span class="opacity-80 text-[10px]">※過去デザインの組み合わせや色変更不可</span>
-                        </p>
-                    </div>
-                </div>
-
-                 <!-- Menu Item: 持ち込み -->
-                 <div class="glass-card rounded-md overflow-hidden flex flex-col md:flex-row border-l-4 border-mua-accent">
-                    <div class="md:w-1/3 w-full h-40 md:h-auto bg-cover bg-center" style="background-image: url('持ち込み.jpg');"></div>
-                    <div class="p-5 md:w-2/3 flex flex-col justify-center">
-                        <div class="flex justify-between items-baseline mb-2">
-                            <h4 class="text-base font-serif text-mua-text">持ち込みデザイン🫧</h4>
-                            <span class="text-lg font-serif text-mua-accent">¥8,800</span>
-                        </div>
-                        <p class="text-xs text-mua-text-light mb-2"><i class="fa-regular fa-clock mr-1"></i>150分</p>
-                        <p class="text-xs text-mua-text-light leading-relaxed font-light">
-                            持ち込み画像を参考にデザインをお作りします。組み合わせもOK。<br>
-                            <span class="opacity-80 text-[10px]">※痛ネイルはお断りしております。</span>
+                        <p class="text-[10px] text-zinc-400 mb-4 tracking-tighter">所要時間 120min</p>
+                        <p class="text-xs leading-loose text-zinc-500">
+                            奥行きのある輝きのマグネットや、強い光に反応するフラッシュジェル。<br>
+                            トレンドの質感を贅沢に。
                         </p>
                     </div>
                 </div>
             </div>
 
-            <!-- Option & Others Menu (画像なし、シンプルに) -->
-            <div class="max-w-xl mx-auto">
-                <h3 class="text-base font-serif text-mua-text-light mb-6 text-center tracking-widest">— OPTION & OTHERS —</h3>
-                <div class="space-y-3 mb-12 text-sm">
-                    <div class="glass-card px-5 py-3 rounded-sm flex justify-between items-center">
-                        <div>
-                            <p class="font-serif text-mua-text">パーツ追加</p>
-                            <p class="text-[10px] text-mua-text-light">小10個まで or 中2個まで / 大1個</p>
+            <!-- Other Menu Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-24 reveal">
+                <div class="border border-zinc-100 p-8 text-center bg-zinc-50">
+                    <p class="text-xs font-light">おまかせ</p>
+                    <p class="text-[8px] text-zinc-400 mt-2">Counseling & Art</p>
+                </div>
+                <div class="border border-zinc-100 p-8 text-center bg-zinc-50">
+                    <p class="text-xs font-light">持ち込み</p>
+                    <p class="text-[8px] text-zinc-400 mt-2">Your Design</p>
+                </div>
+                <div class="border border-zinc-100 p-8 text-center bg-zinc-50">
+                    <p class="text-xs font-light">やり放題</p>
+                    <p class="text-[8px] text-zinc-400 mt-2">Unlimited art</p>
+                </div>
+                <div class="border border-zinc-100 p-8 text-center bg-zinc-50">
+                    <p class="text-xs font-light">自店オフ</p>
+                    <p class="text-[8px] text-zinc-400 mt-2">Always Free</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="py-32 bg-zinc-900 text-white overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-24 reveal">
+                <span class="sub-title block mb-4 text-zinc-500">— Reviews</span>
+                <h2 class="section-title">Satisfied Clients</h2>
+                <div class="mt-8 flex justify-center items-center">
+                    <span class="text-4xl font-extralight mr-4">5.0</span>
+                    <div class="text-amber-400 text-sm tracking-widest">★★★★★</div>
+                </div>
+            </div>
+
+            <div class="space-y-12">
+                <div class="reveal border-l border-zinc-700 pl-8 py-2">
+                    <p class="text-xs text-zinc-500 mb-3">haru9421 / 2025.12.27</p>
+                    <p class="text-sm font-light italic leading-relaxed">「今月もありがとうございました！ピンク×リボンのデザイン、とてもかわいいです🎀次回もよろしくお願いいたします😌」</p>
+                </div>
+                <div class="reveal border-l border-zinc-700 pl-8 py-2" style="transition-delay: 0.2s;">
+                    <p class="text-xs text-zinc-500 mb-3">massy425 / 2025.12.22</p>
+                    <p class="text-sm font-light italic leading-relaxed">「いつもイメージより可愛いデザインありがとうございます！亀裂補強や長さ出しも丁寧に施術して頂きました。またよろしくお願いします！」</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info & Contact -->
+    <section id="contact" class="py-32 px-6 bg-white">
+        <div class="max-w-5xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-20">
+                <div class="reveal">
+                    <h2 class="section-title text-sm mb-12 text-left italic">Information</h2>
+                    <dl class="space-y-6 text-xs tracking-wider">
+                        <div class="flex border-b border-zinc-100 pb-4">
+                            <dt class="w-32 text-zinc-400 uppercase">Salon Name</dt>
+                            <dd>nail salon MUA</dd>
                         </div>
-                        <p class="font-serif text-mua-accent">¥500〜</p>
-                    </div>
-                    <div class="glass-card px-5 py-3 rounded-sm flex justify-between items-center">
-                        <div>
-                            <p class="font-serif text-mua-text">アート追加</p>
-                            <p class="text-[10px] text-mua-text-light">エンボス / イラスト / 立体アート</p>
+                        <div class="flex border-b border-zinc-100 pb-4">
+                            <dt class="w-32 text-zinc-400 uppercase">Address</dt>
+                            <dd>東京都足立区伊興 (予約確定後公開)</dd>
                         </div>
-                        <p class="font-serif text-mua-accent">¥500〜</p>
+                        <div class="flex border-b border-zinc-100 pb-4">
+                            <dt class="w-32 text-zinc-400 uppercase">Access</dt>
+                            <dd>竹ノ塚駅から徒歩7分 (無料駐車場有)</dd>
+                        </div>
+                        <div class="flex border-b border-zinc-100 pb-4">
+                            <dt class="w-32 text-zinc-400 uppercase">Opening</dt>
+                            <dd>09:00 - 20:00 / 不定休</dd>
+                        </div>
+                    </dl>
+                    <div class="mt-16 flex flex-col gap-4">
+                        <a href="#" class="bg-zinc-900 text-white text-center py-5 text-[10px] tracking-[0.3em] font-light hover:bg-black transition-all">RESERVE VIA NAILY</a>
+                        <a href="#" class="border border-zinc-200 text-center py-5 text-[10px] tracking-[0.3em] font-light hover:bg-zinc-50 transition-all uppercase">Membership / Login</a>
                     </div>
                 </div>
 
-                 <!-- Off & Care Menu -->
-                <h3 class="text-base font-serif text-mua-text-light mb-6 text-center tracking-widest">— OFF & REPAIR —</h3>
-                <div class="space-y-3 text-sm">
-                     <div class="glass-card px-5 py-3 rounded-sm flex justify-between items-center">
-                        <div>
-                            <p class="font-serif text-mua-text">オフのみ（自店 / 他店）</p>
-                        </div>
-                        <p class="font-serif text-mua-accent">¥2,800 / ¥4,800</p>
-                    </div>
-                     <div class="glass-card px-5 py-3 rounded-sm flex justify-between items-center">
-                        <div>
-                            <p class="font-serif text-mua-text">長さだし / 亀裂補強</p>
-                        </div>
-                        <p class="font-serif text-mua-accent">¥550 / ¥300</p>
+                <div class="reveal">
+                    <h2 class="section-title text-sm mb-12 text-left italic">Notice</h2>
+                    <div class="bg-zinc-50 p-8 text-[10px] leading-loose text-zinc-500 space-y-4">
+                        <p>● 当日・前日キャンセルはキャンセル料が発生いたします。</p>
+                        <p>● 10分以上の遅刻はメニュー変更またはお断りする場合がございます。</p>
+                        <p>● 持ち込みデザインは事前にお写真を送ってください。</p>
+                        <p>● 施術後1週間以内のお直し可能です。お写真と共にメッセージにてご相談ください。</p>
+                        <p>● 女性のお客様のみのご予約とさせていただきます。</p>
                     </div>
                 </div>
             </div>
-            
-            <p class="mt-8 text-xs text-mua-text-light text-center font-light">※価格は全て税込です</p>
-        </section>
+        </div>
+    </section>
 
-        <!-- Reviews -->
-        <section class="py-16" data-aos="fade-up">
-            <div class="text-center mb-10">
-                <h2 class="text-lg font-serif text-mua-text mb-2">VOICE</h2>
-                <div class="flex justify-center items-center text-mua-accent text-sm mb-1">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <span class="ml-2 text-mua-text font-medium">5.0</span>
-                </div>
-                <p class="text-xs text-mua-text-light">(506件の評価)</p>
+    <!-- Footer -->
+    <footer class="py-24 bg-white border-t border-zinc-100 text-center">
+        <div class="reveal">
+            <!-- フィルターをかけて白ロゴを黒ロゴ風に表示（フッター用） -->
+            <img src="ロゴ白.jpg" alt="Logo" class="w-32 mx-auto mb-10 brightness-0 opacity-20">
+            <div class="flex justify-center space-x-12 mb-16 text-[9px] tracking-[0.3em] text-zinc-400">
+                <a href="#top" class="hover:text-zinc-800 transition-colors">TOP</a>
+                <a href="#concept" class="hover:text-zinc-800 transition-colors">CONCEPT</a>
+                <a href="#gallery" class="hover:text-zinc-800 transition-colors">GALLERY</a>
+                <a href="#menu" class="hover:text-zinc-800 transition-colors">MENU</a>
             </div>
+            <p class="text-[8px] text-zinc-300 tracking-[0.5em] uppercase">&copy; 2026 NAIL SALON MUA.</p>
+        </div>
+    </footer>
 
-            <!-- Review Carousel -->
-            <div class="flex overflow-x-auto space-x-4 pb-6 px-2 -mx-6 scrollbar-hide">
-                <div class="flex-none w-72 glass-card p-5 rounded-md first:ml-6 last:mr-6 shadow-sm">
-                    <div class="flex justify-between mb-3">
-                        <span class="text-xs font-medium text-mua-text">haru9421様</span>
-                        <span class="text-[10px] text-mua-text-light">2025/12/27</span>
-                    </div>
-                    <p class="text-xs text-mua-text leading-normal mb-3 font-light">
-                        今月もありがとうございました！ピンク×リボンのデザイン、とてもかわいいです🎀次回もよろしくお願いいたします😌
-                    </p>
-                    <div class="bg-mua-bg-light/50 p-3 rounded-sm text-[10px] text-mua-text-light">
-                        <span class="text-mua-accent">MUA:</span> 普段とは少し違ったガーリーなデザインもとってもお似合いでした💅
-                    </div>
-                </div>
-
-                <div class="flex-none w-72 glass-card p-5 rounded-md shadow-sm">
-                    <div class="flex justify-between mb-3">
-                        <span class="text-xs font-medium text-mua-text">massy425様</span>
-                        <span class="text-[10px] text-mua-text-light">2025/12/22</span>
-                    </div>
-                    <p class="text-xs text-mua-text leading-normal mb-3 font-light">
-                        亀裂補強や長さ出しが多くなりましたが、とても丁寧に施術して頂きました🙇🏻‍♀️またよろしくお願いします！
-                    </p>
-                    <div class="bg-mua-bg-light/50 p-3 rounded-sm text-[10px] text-mua-text-light">
-                        <span class="text-mua-accent">MUA:</span> 毎回嬉しいお言葉をいただけて励みになっておりました！今年も頑張ります💖
-                    </div>
-                </div>
-
-                <div class="flex-none w-72 glass-card p-5 rounded-md shadow-sm">
-                    <div class="flex justify-between mb-3">
-                        <span class="text-xs font-medium text-mua-text">miu_u22様</span>
-                        <span class="text-[10px] text-mua-text-light">2025/12/19</span>
-                    </div>
-                    <p class="text-xs text-mua-text leading-normal mb-3 font-light">
-                        画像何枚か組み合わせてもらい、とっても可愛くなりました〜！！！ありがとうございました！
-                    </p>
-                    <div class="bg-mua-bg-light/50 p-3 rounded-sm text-[10px] text-mua-text-light">
-                        <span class="text-mua-accent">MUA:</span> デザイン気に入ってくださりとても嬉しかったです✨
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Terms & Warning -->
-        <section class="py-8 mb-12" data-aos="fade-up">
-            <div class="glass-card rounded-md overflow-hidden shadow-sm">
-                <div class="bg-white/60 px-5 py-4 border-b border-gray-100 flex justify-between items-center cursor-pointer transition-colors hover:bg-white/80" onclick="toggleTerms()">
-                    <span class="text-sm font-serif text-mua-text flex items-center">
-                        <i class="fa-solid fa-circle-info text-mua-accent mr-3 opacity-70"></i>注意事項・利用規約
-                    </span>
-                    <i class="fa-solid fa-chevron-down text-mua-text-light text-xs transition-transform duration-300" id="termsIcon"></i>
-                </div>
-                <div class="terms-box p-6 text-xs text-mua-text leading-8 font-light hidden" id="termsContent">
-                    <div class="space-y-6">
-                        <div>
-                            <h4 class="font-medium text-mua-text mb-2 flex items-center"><i class="fa-solid fa-ban mr-2 text-mua-accent/70 text-[10px]"></i>キャンセルについて</h4>
-                            <p>当日キャンセルは100%、前日キャンセルは50%のキャンセル料がかかります（日時変更含む）。遅延や自然災害時は除きます。</p>
-                        </div>
-                        <div>
-                            <h4 class="font-medium text-mua-text mb-2 flex items-center"><i class="fa-regular fa-clock mr-2 text-mua-accent/70 text-[10px]"></i>遅刻について</h4>
-                            <p>10分以上の遅刻はメニュー変更や施術をお断りする場合がございます。15分以上の遅刻はキャンセル扱いとなります。また、10分以上早いご来店はお控えください。</p>
-                        </div>
-                        <div>
-                             <h4 class="font-medium text-mua-text mb-2 flex items-center"><i class="fa-solid fa-wand-magic-sparkles mr-2 text-mua-accent/70 text-[10px]"></i>デザインについて</h4>
-                            <ul class="list-disc pl-4 space-y-1">
-                                <li>持ち込みデザインは事前に写真をお送りください。全く同じ商材がない場合がございます。</li>
-                                <li>おまかせデザインで理想がお決まりの方は、「持ち込みデザイン」でご予約ください。</li>
-                            </ul>
-                        </div>
-                         <div>
-                             <h4 class="font-medium text-mua-text mb-2 flex items-center"><i class="fa-solid fa-screwdriver-wrench mr-2 text-mua-accent/70 text-[10px]"></i>お直しについて</h4>
-                            <p>施術後1週間以内であればお直し可能です（メッセージにて要相談）。お客様の不注意による破損、他店での長さ出し部分の破損は対象外です。</p>
-                        </div>
-                        <div>
-                             <h4 class="font-medium text-mua-text mb-2 flex items-center"><i class="fa-solid fa-circle-exclamation mr-2 text-mua-accent/70 text-[10px]"></i>その他</h4>
-                            <ul class="list-disc pl-4 space-y-1">
-                                <li>女性限定サロンです。</li>
-                                <li>お爪の疾患が見受けられた場合、施術をお断りすることがあります。</li>
-                                <li>土日祝は予約枠（9:00/11:30/14:00/16:30）を設けさせていただいております。</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-         <!-- Information -->
-         <section class="py-12 border-t border-mua-text/5" data-aos="fade-up">
-            <h2 class="text-lg font-serif text-mua-text mb-8 text-center tracking-widest">SALON INFO</h2>
-            
-            <div class="space-y-5 text-sm text-mua-text font-light">
-                <div class="flex items-baseline border-b border-mua-text/5 pb-4">
-                    <span class="w-24 text-mua-text-light text-xs uppercase tracking-wider shrink-0">Name</span>
-                    <span>nail salon MUA</span>
-                </div>
-                <div class="flex items-baseline border-b border-mua-text/5 pb-4">
-                    <span class="w-24 text-mua-text-light text-xs uppercase tracking-wider shrink-0">Address</span>
-                    <div>
-                        東京都 足立区 伊興<br>
-                        <span class="text-xs text-mua-accent mt-2 block flex items-center"><i class="fa-solid fa-lock mr-1.5"></i> 詳細は予約確定後に公開</span>
-                    </div>
-                </div>
-                 <div class="flex items-baseline border-b border-mua-text/5 pb-4">
-                    <span class="w-24 text-mua-text-light text-xs uppercase tracking-wider shrink-0">Access</span>
-                    <span>竹ノ塚駅から徒歩7分</span>
-                </div>
-                <div class="flex items-start border-b border-mua-text/5 pb-4">
-                    <span class="w-24 text-mua-text-light text-xs uppercase tracking-wider shrink-0 pt-1">Features</span>
-                    <div class="grid grid-cols-2 gap-y-3 gap-x-4 text-xs">
-                        <span class="flex items-center"><i class="fa-solid fa-check text-mua-accent mr-2 opacity-70"></i>フィルイン</span>
-                        <span class="flex items-center"><i class="fa-solid fa-check text-mua-accent mr-2 opacity-70"></i>持ち込みOK</span>
-                        <span class="flex items-center"><i class="fa-solid fa-check text-mua-accent mr-2 opacity-70"></i>個室・駐車場有</span>
-                        <span class="flex items-center"><i class="fa-solid fa-check text-mua-accent mr-2 opacity-70"></i>Netflix/FOD</span>
-                        <span class="flex items-center"><i class="fa-solid fa-clock text-mua-accent mr-2 opacity-70"></i>朝10時前OK</span>
-                        <span class="flex items-center"><i class="fa-solid fa-clock text-mua-accent mr-2 opacity-70"></i>夜8時以降OK</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <footer class="text-center text-[10px] text-mua-text-light pb-8 mt-8">
-            <p class="font-serif tracking-wider">&copy; 2026 nail salon MUA. All Rights Reserved.</p>
-        </footer>
-
-    </main>
-
-    <!-- Sticky CTA Button -->
-    <div class="fixed bottom-0 left-0 w-full z-50 p-4 bg-gradient-to-t from-white via-white/80 to-transparent">
-        <a href="#" class="block w-full max-w-md mx-auto bg-mua-text text-white font-serif text-center py-4 rounded-sm shadow-lg hover:bg-mua-text/90 transition-colors duration-300 relative overflow-hidden group">
-            <span class="relative z-10 tracking-[0.2em] font-medium">RESERVATION</span>
-            <div class="absolute inset-0 bg-mua-accent transform scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100 z-0 opacity-50"></div>
-        </a>
-    </div>
-
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Init AOS
-        AOS.init({
-            once: true,
-            offset: 50,
-            duration: 1000,
-            easing: 'ease-out-quart',
-        });
-
-        // Loading Animation
+        // Entrance sequence
         window.addEventListener('load', () => {
-            const loader = document.getElementById('loader');
+            const logo = document.getElementById('initialLogo');
+            const line = document.getElementById('line');
+            const sub = document.getElementById('subText');
+            const curtain = document.getElementById('curtain');
+            
+            // Initial animations in the curtain
             setTimeout(() => {
-                loader.style.opacity = '0';
-                setTimeout(() => {
-                    loader.style.display = 'none';
-                    AOS.refresh();
-                }, 800);
-            }, 1500);
+                if(logo) logo.classList.replace('opacity-0', 'opacity-100');
+            }, 400);
+            setTimeout(() => {
+                if(line) line.classList.replace('scale-x-0', 'scale-x-100');
+            }, 800);
+            setTimeout(() => {
+                if(sub) sub.classList.replace('opacity-0', 'opacity-100');
+            }, 1200);
+
+            // Open curtain
+            setTimeout(() => {
+                if(curtain) curtain.classList.add('open');
+            }, 2800);
+
+            // Parallax Hero Effect
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const heroImg = document.getElementById('heroImg');
+                if (heroImg) {
+                    heroImg.style.transform = `scale(${1 + scrolled * 0.0003}) translateY(${scrolled * 0.1}px)`;
+                }
+            });
         });
 
-        // Navbar Scroll Effect with Logo Inversion
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            const logo = document.getElementById('nav-logo');
-            const menuBtn = document.getElementById('menu-btn');
+        // Scroll Reveal Implementation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
 
-            if (window.scrollY > 50) {
-                // Scrolled: White background, Dark contents
-                nav.classList.add('bg-white/80', 'backdrop-blur-md', 'shadow-sm');
-                nav.classList.remove('py-4');
-                nav.classList.add('py-3');
-                
-                // Invert logo colors for white background
-                logo.classList.add('nav-logo-invert');
-                
-                // Change menu button color
-                menuBtn.classList.remove('text-white');
-                menuBtn.classList.add('text-mua-text');
-                
-            } else {
-                // Top: Transparent background, White contents
-                nav.classList.remove('bg-white/80', 'backdrop-blur-md', 'shadow-sm', 'py-3');
-                nav.classList.add('py-4');
-                
-                // Reset logo colors
-                logo.classList.remove('nav-logo-invert');
-                
-                // Reset menu button color
-                menuBtn.classList.add('text-white');
-                menuBtn.classList.remove('text-mua-text');
-            }
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Smooth Scroll for Internal Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
-
-        // Toggle Terms
-        function toggleTerms() {
-            const content = document.getElementById('termsContent');
-            const icon = document.getElementById('termsIcon');
-            content.classList.toggle('hidden');
-            if (content.classList.contains('hidden')) {
-                icon.style.transform = 'rotate(0deg)';
-            } else {
-                icon.style.transform = 'rotate(180deg)';
-            }
-        }
     </script>
 </body>
 </html>
